@@ -55,7 +55,6 @@ namespace SDAS.Views
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            this.Text = DefaultText;
             IsDefaultText = true;
         }
 

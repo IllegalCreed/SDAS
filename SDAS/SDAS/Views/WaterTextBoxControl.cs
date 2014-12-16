@@ -5,21 +5,40 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace SDAS.Views
 {
     public class WaterTextBoxControl : TextBox
     {
+        private bool mIsDefaultText;
+        private bool IsDefaultText
+        {
+            get
+            {
+                return mIsDefaultText;
+            }
+            set
+            {
+                mIsDefaultText = value;
+                if (mIsDefaultText)
+                {
+                    this.Text = DefaultText;
+                    this.Foreground = Brushes.Gainsboro;
+                }
+                else
+                {
+                    this.Text = "";
+                    this.Foreground = Brushes.Black;
+                }
+            }
+        }
 
-
-        private bool isDefaultText = true;
         public string DefaultText
         {
             get { return (string)GetValue(DefaultTextProperty); }
             set { SetValue(DefaultTextProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for DefaultText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DefaultTextProperty =
             DependencyProperty.Register("DefaultText", typeof(string), typeof(WaterTextBoxControl), new PropertyMetadata(""));
 
@@ -27,10 +46,9 @@ namespace SDAS.Views
         protected override void OnGotFocus(RoutedEventArgs e)
         {
             base.OnGotFocus(e);
-            if (isDefaultText)
+            if (IsDefaultText)
             {
-                this.Text = "";
-                this.isDefaultText = false;
+                this.IsDefaultText = false;
             }
         }
 
@@ -38,6 +56,7 @@ namespace SDAS.Views
         {
             base.OnInitialized(e);
             this.Text = DefaultText;
+            IsDefaultText = true;
         }
 
         protected override void OnLostFocus(RoutedEventArgs e)
@@ -45,8 +64,7 @@ namespace SDAS.Views
             base.OnLostFocus(e);
             if (this.Text.Trim() == "")
             {
-                this.Text = DefaultText;
-                this.isDefaultText = true;
+                this.IsDefaultText = true;
             }
          
         }

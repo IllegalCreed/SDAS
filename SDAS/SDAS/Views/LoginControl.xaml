@@ -25,15 +25,22 @@
                             HorizontalAlignment="Right">
                     <views:WaterTextBoxControl Margin="0,10"
                                                Height="30"
-                                               FontSize="22"
-                                               DefaultText="用户名"/>
+                                               FontSize="20"
+                                               DefaultText="用户名"
+                                               Padding="10,1"
+                                               Style="{StaticResource Login_TextBox_Style}" />
                     <views:WaterTextBoxControl Margin="0,10"
                                                Height="30"
-                                               FontSize="22"
-                                               DefaultText="密码"/>
+                                               FontSize="20"
+                                               DefaultText="密码"
+                                               Padding="10,1"
+                                               Style="{StaticResource Login_TextBox_Style}" />
                 </StackPanel>
                 <Button  Width="100"
-                         Margin="30,10,0,10" />
+                         Margin="30,10,0,10"
+                         Content="登  录"
+                         FontSize="20"
+                         Style="{StaticResource Common_Button_Style}"/>
             </StackPanel>
         </Grid>
     </Border>

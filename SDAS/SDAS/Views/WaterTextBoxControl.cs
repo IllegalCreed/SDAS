@@ -24,7 +24,7 @@ namespace SDAS.Views
                 if (mIsDefaultText)
                 {
                     this.Text = DefaultText;
-                    this.Foreground = Brushes.Gainsboro;
+                    this.Foreground = Brushes.Gray;
                 }
                 else
                 {

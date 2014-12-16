@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="Title_Big_TextBlock_Style"
+           TargetType="TextBlock">
+        <Setter Property="FontFamily"
+                Value="./Fonts/#微软简老宋" />
+        <Setter Property="FontSize"
+                Value="72" />
+        <Setter Property="Foreground"
+                Value="#FF333333" />
+    </Style>
+</ResourceDictionary>

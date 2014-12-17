@@ -11,6 +11,8 @@
         WindowStyle="None"
         WindowState="Maximized">
     <Grid>
-        <views:LoginControl VerticalAlignment="Center" Height="200"/>
+        <Border Background="#FFDDDDDD">
+            <views:LoginControl VerticalAlignment="Center" Height="200"/>
+        </Border>
     </Grid>
 </Window>

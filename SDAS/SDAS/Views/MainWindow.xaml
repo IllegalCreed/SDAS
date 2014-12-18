@@ -24,10 +24,13 @@
                 Visibility="{Binding IsLoginPage, Converter={StaticResource B2VConverter}}">
             <views:LoginControl VerticalAlignment="Center"
                                 Height="200"
-                                DataContext="{Binding LVM}"/>
+                                DataContext="{Binding LVM}" />
         </Border>
 
-        <Frame Source="{Binding Pagesource}"
-               Visibility="{Binding IsLoginPage, Converter={StaticResource AB2VConverter}}"/>
+        <Frame x:Name="frame"
+               DataContextChanged="frame_DataContextChanged"
+               LoadCompleted="frame_LoadCompleted"
+               Source="{Binding Pagesource}"
+               Visibility="{Binding IsLoginPage, Converter={StaticResource AB2VConverter}}" />
     </Grid>
 </Window>

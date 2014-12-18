@@ -11,6 +11,7 @@ namespace SDAS.ViewModels
         public MainViewModel()
         {
             LVM = new LoginViewModel(this);
+            SVM = new SellerViewModel(this);
         }
 
 
@@ -52,6 +53,12 @@ namespace SDAS.ViewModels
         }
 
         public LoginViewModel LVM
+        {
+            get;
+            set;
+        }
+
+        public SellerViewModel SVM
         {
             get;
             set;

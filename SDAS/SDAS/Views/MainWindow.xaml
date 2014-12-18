@@ -4,15 +4,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:views="clr-namespace:SDAS.Views"
+        xmlns:viewmodels="clr-namespace:SDAS.ViewModels"
         mc:Ignorable="d"
         d:DesignHeight="1080"
         d:DesignWidth="1920"
         Title="MainWindow"
         WindowStyle="None"
         WindowState="Maximized">
+    <Window.DataContext>
+        <viewmodels:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="B2VConverter" />
+        <viewmodels:AntiBooleanToVisibilityConverter x:Key="AB2VConverter" />
+    </Window.Resources>
+
     <Grid>
-        <Border Background="#FFDDDDDD">
-            <views:LoginControl VerticalAlignment="Center" Height="200"/>
+        <Border Background="#FFDDDDDD"
+                Visibility="{Binding IsLoginPage, Converter={StaticResource B2VConverter}}">
+            <views:LoginControl VerticalAlignment="Center"
+                                Height="200"
+                                DataContext="{Binding LVM}"/>
         </Border>
+
+        <Frame Source="{Binding Pagesource}"
+               Visibility="{Binding IsLoginPage, Converter={StaticResource AB2VConverter}}"/>
     </Grid>
 </Window>

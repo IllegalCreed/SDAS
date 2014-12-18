@@ -40,7 +40,8 @@
                          Margin="30,10,0,10"
                          Content="登  录"
                          FontSize="20"
-                         Style="{StaticResource Common_Button_Style}"/>
+                         Style="{StaticResource Common_Button_Style}"
+                         Command="{Binding LoginCommand}"/>
             </StackPanel>
         </Grid>
     </Border>

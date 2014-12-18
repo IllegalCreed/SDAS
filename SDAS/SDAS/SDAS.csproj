@@ -54,8 +54,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\BaseCommand.cs" />
+    <Compile Include="ViewModels\Converters.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\SellerHomePage.xaml.cs">
+      <DependentUpon>SellerHomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WaterTextBoxControl.cs" />
     <Page Include="Styles\IndexDictionary.xaml">
       <SubType>Designer</SubType>
@@ -85,6 +90,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Styles\ButtonDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SellerHomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,6 +28,7 @@
         </Border>
 
         <Frame x:Name="frame"
+               NavigationUIVisibility="Hidden"
                DataContextChanged="frame_DataContextChanged"
                LoadCompleted="frame_LoadCompleted"
                Source="{Binding Pagesource}"

@@ -44,11 +44,9 @@ namespace SDAS.ViewModels
             }
             set
             {
-                if (value != mPageSource)
-                {
-                    mPageSource = value;
-                    RaisePropertyChanged(() => Pagesource);
-                }
+                mPageSource = value;
+                RaisePropertyChanged(() => Pagesource);
+
             }
         }
 

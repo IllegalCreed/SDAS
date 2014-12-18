@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SDAS.ViewModels
 {
@@ -20,6 +21,19 @@ namespace SDAS.ViewModels
         {
             get;
             set;
+        }
+
+        public ICommand CreateOrderCommand
+        {
+            get
+            {
+                return new BaseCommand(OnCreateOrder);
+            }
+        }
+
+        public void OnCreateOrder()
+        {
+            ParentVM.Pagesource = "NewOrderPage.xaml";
         }
     }
 }

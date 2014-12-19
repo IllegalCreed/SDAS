@@ -7,9 +7,10 @@
       d:DesignHeight="300"
       d:DesignWidth="300"
       Title="NewOrderPage"
+      Background="#FFDDDDDD"
       x:Name="Root">
 
-    <Grid DataContext="{Binding SVM}">
+    <Grid DataContext="{Binding SVM.NOVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition Height="*" />
@@ -28,7 +29,19 @@
                     Content="返回"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
-                    Command="{Binding ElementName=Root, Path=GoBackCommand}"/>
+                    Command="{Binding ElementName=Root, Path=GoBackCommand}" />
+
+            <Border Width="600"
+                    Height="800"
+                    Background="#FFBBBBBB" />
+
+            <Button Style="{StaticResource Common_Button_Style}"
+                    Width="100"
+                    Height="30"
+                    Content="下一步"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Command="{Binding CreatedOrderCommand}"/>
         </Grid>
     </Grid>
 </Page>

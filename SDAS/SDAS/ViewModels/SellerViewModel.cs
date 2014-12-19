@@ -9,15 +9,29 @@ namespace SDAS.ViewModels
 {
     public class SellerViewModel
     {
-        private MainViewModel ParentVM;
+        public MainViewModel ParentVM;
 
         public SellerViewModel(MainViewModel VM)
         {
             ParentVM = VM;
             FVM = new FilterViewModel(this);
+            NOVM = new NewOrderViewModel(this);
+            OVM = new OrderViewModel(this);
         }
 
         public FilterViewModel FVM
+        {
+            get;
+            set;
+        }
+
+        public NewOrderViewModel NOVM
+        {
+            get;
+            set;
+        }
+
+        public OrderViewModel OVM
         {
             get;
             set;

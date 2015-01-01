@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDAS_DataAdapter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,9 @@ namespace SDAS.ViewModels
 
         public void OnLogin()
         {
+            AccessDataAdapter ADA = new AccessDataAdapter("..\\..\\..\\DB\\SDAS.accdb");
+
+
             ParentVM.IsLoginPage = false;
             ParentVM.Pagesource = "SellerHomePage.xaml";
         }

@@ -154,6 +154,12 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SDAS_DataAdapter\SDAS_DataAdapter.csproj">
+      <Project>{38df87f9-acf0-4834-ba0c-9125fdfb54dd}</Project>
+      <Name>SDAS_DataAdapter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -17,7 +17,6 @@ namespace SDAS
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
             MainWindow MW = new MainWindow();
             MW.Show();
         }

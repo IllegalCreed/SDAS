@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace SDAS.ViewModels
 {
-    public class LoginViewModel
+    public class LoginViewModel : ViewModelBase
     {
         private MainViewModel ParentVM;
 
@@ -16,6 +16,19 @@ namespace SDAS.ViewModels
         {
             ParentVM = VM;
         }
+
+        public string UserName
+        {
+            get;
+            set;
+        }
+
+        public string PassWord
+        {
+            get;
+            set;
+        }
+
 
         public ICommand LoginCommand
         {
@@ -28,10 +41,11 @@ namespace SDAS.ViewModels
         public void OnLogin()
         {
             AccessDataAdapter ADA = new AccessDataAdapter("..\\..\\..\\DB\\SDAS.accdb");
-
-
-            ParentVM.IsLoginPage = false;
-            ParentVM.Pagesource = "SellerHomePage.xaml";
+            if (ADA.Login(UserName, PassWord))
+            {
+                ParentVM.IsLoginPage = false;
+                ParentVM.Pagesource = "SellerHomePage.xaml";
+            }
         }
     }
 }

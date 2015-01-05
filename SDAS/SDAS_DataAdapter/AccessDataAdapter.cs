@@ -15,19 +15,31 @@ namespace SDAS_DataAdapter
 
         public AccessDataAdapter(string path)
         {
-            DataSet myDataSet = new DataSet();
             OCAdapter = new OleDbDataAdapter();
 
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path;
             ODConnection = new OleDbConnection(connectionString);
+        }
 
-            OleDbCommand command = new OleDbCommand("SELECT * FROM 客户信息", ODConnection);
+        public bool Login(string UserName,string Password)
+        {
+            bool result = false;
+
+            DataTable Data = new DataTable();
+            string querystring = "SELECT * FROM 用户信息 WHERE 用户名='" + UserName + "' AND 密码='" + Password + "'";
+            OleDbCommand command = new OleDbCommand(querystring, ODConnection);
             OCAdapter.SelectCommand = command;
 
             ODConnection.Open();
-            OCAdapter.Fill(myDataSet, "客户信息");
+            OCAdapter.Fill(Data);
             ODConnection.Close();
+
+            if (Data.Rows.Count > 0)
+            {
+                result = true;
+            }
+
+            return result;
         }
-        
     }
 }

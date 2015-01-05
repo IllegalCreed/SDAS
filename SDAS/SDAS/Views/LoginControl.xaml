@@ -27,12 +27,14 @@
                                                Height="30"
                                                FontSize="20"
                                                DefaultText="用户名"
+                                               Text="{Binding UserName,Mode=OneWayToSource}"
                                                Padding="10,1"
                                                Style="{StaticResource Login_TextBox_Style}" />
                     <views:WaterTextBoxControl Margin="0,10"
                                                Height="30"
                                                FontSize="20"
                                                DefaultText="密码"
+                                               Text="{Binding PassWord,Mode=OneWayToSource}"
                                                Padding="10,1"
                                                Style="{StaticResource Login_TextBox_Style}" />
                 </StackPanel>

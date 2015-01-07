@@ -40,8 +40,7 @@ namespace SDAS.ViewModels
 
         public void OnLogin()
         {
-            AccessDataAdapter ADA = new AccessDataAdapter("..\\..\\..\\DB\\SDAS.accdb");
-            if (ADA.Login(UserName, PassWord))
+            if (Global.GetInstance().ADA.Login(UserName, PassWord))
             {
                 ParentVM.IsLoginPage = false;
                 ParentVM.Pagesource = "SellerHomePage.xaml";

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SDAS_Model
 {
-    public class Saler
+    public class User
     {
         public int ID;
+        public string Name;
+        public string Role;
     }
 }

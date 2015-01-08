@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SDAS_Model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +9,7 @@ using System.Windows.Input;
 
 namespace SDAS.ViewModels
 {
-    public class SellerViewModel
+    public class SellerViewModel:ViewModelBase
     {
         public MainViewModel ParentVM;
 
@@ -35,6 +37,23 @@ namespace SDAS.ViewModels
         {
             get;
             set;
+        }
+
+        private ObservableCollection<Order> mOrders;
+        public ObservableCollection<Order> Orders
+        {
+            get
+            {
+                return mOrders;
+            }
+            set
+            {
+                if (mOrders != value)
+                {
+                    mOrders = value;
+                    RaisePropertyChanged(() => Orders);
+                }
+            }
         }
 
         public ICommand CreateOrderCommand

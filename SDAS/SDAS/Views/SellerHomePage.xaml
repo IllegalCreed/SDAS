@@ -38,7 +38,25 @@
                                      DataContext="{Binding FVM}" />
 
                 <Border Grid.Row="1"
-                        Background="#FFBBBBBB" />
+                        Background="#FFBBBBBB">
+                    <DataGrid ItemsSource="{Binding Orders}"
+                              AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="订单编号"
+                                                Binding="{Binding ID}" />
+                            <DataGridTextColumn Header="客户姓名"
+                                                Binding="{Binding Customer.ID}" />
+                            <DataGridTextColumn Header="客户电话"
+                                                Binding="{Binding Customer.PhoneNumber}" />
+                            <DataGridTextColumn Header="订单状态"
+                                                Binding="{Binding State}" />
+                            <DataGridTextColumn Header="首访日期"
+                                                Binding="{Binding ID}" />
+                            <DataGridTextColumn Header="最后更新日期"
+                                                Binding="{Binding ID}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
             </Grid>
 
             <Grid Grid.Column="1"

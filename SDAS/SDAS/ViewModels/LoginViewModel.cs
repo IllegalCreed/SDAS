@@ -1,6 +1,8 @@
 ﻿using SDAS_DataAdapter;
+using SDAS_Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,10 +42,13 @@ namespace SDAS.ViewModels
 
         public void OnLogin()
         {
-            if (Global.GetInstance().ADA.Login(UserName, PassWord))
+            Global.GetInstance().CurrentUser = Global.GetInstance().ADA.Login(UserName, PassWord);
+            if (Global.GetInstance().CurrentUser != null)
             {
                 ParentVM.IsLoginPage = false;
                 ParentVM.Pagesource = "SellerHomePage.xaml";
+
+                ParentVM.SVM.Orders = new ObservableCollection<Order>(Global.GetInstance().ADA.GetAllOrderByUserID(Global.GetInstance().CurrentUser.ID));
             }
         }
     }

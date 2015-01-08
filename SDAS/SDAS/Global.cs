@@ -1,4 +1,5 @@
 ﻿using SDAS_DataAdapter;
+using SDAS_Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,5 +26,10 @@ namespace SDAS
         /// Access数据访问层
         /// </summary>
         public AccessDataAdapter ADA;
+
+        /// <summary>
+        /// 当前销售
+        /// </summary>
+        public User CurrentUser;
     }
 }

@@ -6,17 +6,44 @@ using System.Threading.Tasks;
 
 namespace SDAS_Model
 {
-    public class Order
+    public class Order : ViewModelBase
     {
-        public int ID;
+        public Order()
+        {
+            Customer = new Customer();
+            Offer = new Offer();
+            Verify = new Verify();
+            Contract = new Contract();
+            PropertyRights = new PropertyRights();
+            Saler = new User();
+            VisitLogs = new List<VisitLog>();
+        }
+
+        private int mID;
+        public int ID
+        {
+            get
+            {
+                return mID;
+            }
+            set
+            {
+                if (mID != value)
+                {
+                    mID = value;
+                    RaisePropertyChanged(() => ID);
+                }
+            }
+        }
         public Customer Customer;
         public string State;
         public Offer Offer;
         public Verify Verify;
+        public Contract Contract;
         public DateTime LoanDate;
         public DateTime CheckInDate;
         public PropertyRights PropertyRights;
-        public Saler Saler;
+        public User Saler;
         public List<VisitLog> VisitLogs;
     }
 }

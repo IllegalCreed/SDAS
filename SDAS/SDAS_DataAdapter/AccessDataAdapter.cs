@@ -41,5 +41,9 @@ namespace SDAS_DataAdapter
 
             return result;
         }
+
+        public bool GetOrder(string UserName, string Password)
+        {
+        }
     }
 }

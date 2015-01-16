@@ -35,7 +35,24 @@ namespace SDAS_Model
                 }
             }
         }
-        public Customer Customer;
+
+        private Customer mCustomer;
+        public Customer Customer
+        {
+            get
+            {
+                return mCustomer;
+            }
+            set
+            {
+                if (mCustomer != value)
+                {
+                    mCustomer = value;
+                    RaisePropertyChanged(() => Customer);
+                }
+            }
+        }
+
         public string State;
         public Offer Offer;
         public Verify Verify;

@@ -64,8 +64,13 @@ namespace SDAS_DataAdapter
             {
                 Order Order = new Order();
                 Order.ID = (int)row["ID"];
+
                 Order.Saler.ID = (int)row["销售"];
+                Order.Saler = GetUserByID(Order.Saler.ID);
+
                 Order.Customer.ID = (int)row["客户"];
+                Order.Customer = GetCustomerByID(Order.Customer.ID);
+
                 Order.State = row["状态"].ToString();
                 int.TryParse(row["认购ID"].ToString(),out Order.Offer.ID);
                 int.TryParse(row["审核ID"].ToString(), out Order.Verify.ID);
@@ -77,6 +82,81 @@ namespace SDAS_DataAdapter
             }
 
             return Orders;
+        }
+
+        public User GetUserByID(int UserID)
+        {
+            User user = new User();
+
+            string querystring = "SELECT * FROM 用户信息 WHERE ID=" + UserID;
+            DataTable Data = DoSearch(querystring);
+
+            if (Data.Rows.Count > 0)
+            {
+                user.ID = (int)Data.Rows[0]["ID"];
+                user.Name = Data.Rows[0]["姓名"].ToString();
+                user.Role = Data.Rows[0]["角色"].ToString();
+            }
+            else
+            {
+                return null;
+            }
+
+            return user;
+        }
+
+        public Customer GetCustomerByID(int CustomerID)
+        {
+            Customer customer = new Customer();
+
+            string querystring = "SELECT * FROM 客户信息 WHERE ID=" + CustomerID;
+            DataTable Data = DoSearch(querystring);
+
+            if (Data.Rows.Count > 0)
+            {
+                customer.ID = (int)Data.Rows[0]["ID"];
+                customer.Name = Data.Rows[0]["姓名"].ToString();
+                customer.Sex = Data.Rows[0]["性别"].ToString();
+
+                int age;
+                int.TryParse(Data.Rows[0]["年龄"].ToString(), out age);
+                customer.Age = age;
+
+                customer.IDNumber = Data.Rows[0]["身份证号"].ToString();
+                customer.PhoneNumber = Data.Rows[0]["手机号"].ToString();
+
+                string Residence = GetAdministrativeNameByCode(Data.Rows[0]["居住地区"].ToString());
+                customer.Residence = string.IsNullOrEmpty(Residence) ? "未找到" : Residence;
+
+                string WorkPlace = GetAdministrativeNameByCode(Data.Rows[0]["工作地区"].ToString());
+                customer.WorkPlace = string.IsNullOrEmpty(WorkPlace) ? "未找到" : WorkPlace;
+
+                int.TryParse(Data.Rows[0]["家庭人数"].ToString(), out customer.FamilyNumber);
+                customer.Channel = Data.Rows[0]["首访渠道"].ToString();
+                customer.EducationalBackground = Data.Rows[0]["文化水平"].ToString();
+                customer.VisitWay = Data.Rows[0]["首访途径"].ToString();
+            }
+            else
+            {
+                return null;
+            }
+
+            return customer;
+        }
+
+        public string GetAdministrativeNameByCode(string Code)
+        {
+            string name = "";
+
+            string querystring = "SELECT * FROM 行政区划 WHERE 代码='" + Code + "'";
+            DataTable Data = DoSearch(querystring);
+
+            if (Data.Rows.Count > 0)
+            {
+                name = Data.Rows[0]["名称"].ToString();
+            }
+
+            return name;
         }
     }
 }

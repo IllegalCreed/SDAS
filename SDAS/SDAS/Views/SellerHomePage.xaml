@@ -53,7 +53,7 @@
                                                 Binding="{Binding ID}"
                                                 Width="1*"/>
                             <DataGridTextColumn Header="客户姓名"
-                                                Binding="{Binding Customer.ID}"
+                                                Binding="{Binding Customer.Name}"
                                                 Width="1*" />
                             <DataGridTextColumn Header="客户电话"
                                                 Binding="{Binding Customer.PhoneNumber}"

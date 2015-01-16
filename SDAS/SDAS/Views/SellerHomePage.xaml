@@ -40,20 +40,35 @@
                 <Border Grid.Row="1"
                         Background="#FFBBBBBB">
                     <DataGrid ItemsSource="{Binding Orders}"
-                              AutoGenerateColumns="False">
+                              AutoGenerateColumns="False"
+                              HeadersVisibility="Column"
+                              IsReadOnly="True"
+                              RowHeight="30"
+                              Style="{StaticResource Common_DataGrid_Style}"
+                              ColumnHeaderStyle="{StaticResource Common_DataGridColumnHeader_Style}"
+                              RowStyle="{StaticResource Common_DataGridRow_Style}"
+                              CellStyle="{StaticResource Common_DataGridCell_Style}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="订单编号"
-                                                Binding="{Binding ID}" />
+                                                Binding="{Binding ID}"
+                                                Width="1*"/>
                             <DataGridTextColumn Header="客户姓名"
-                                                Binding="{Binding Customer.ID}" />
+                                                Binding="{Binding Customer.ID}"
+                                                Width="1*" />
                             <DataGridTextColumn Header="客户电话"
-                                                Binding="{Binding Customer.PhoneNumber}" />
+                                                Binding="{Binding Customer.PhoneNumber}"
+                                                Width="2*" />
                             <DataGridTextColumn Header="订单状态"
-                                                Binding="{Binding State}" />
+                                                Binding="{Binding State}"
+                                                Width="1*" />
                             <DataGridTextColumn Header="首访日期"
-                                                Binding="{Binding ID}" />
+                                                Binding="{Binding ID}"
+                                                Width="2*" />
                             <DataGridTextColumn Header="最后更新日期"
-                                                Binding="{Binding ID}" />
+                                                Binding="{Binding ID}"
+                                                Width="2*" />
+                            <DataGridTextColumn Header="操作"
+                                                Width="3*" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

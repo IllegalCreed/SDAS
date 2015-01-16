@@ -77,7 +77,15 @@
       <DependentUpon>SellerHomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WaterTextBoxControl.cs" />
+    <Page Include="Styles\DataGridDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\IndexDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ScrollViewDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

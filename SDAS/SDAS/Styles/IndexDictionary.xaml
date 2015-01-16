@@ -3,5 +3,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="./TextDictionary.xaml" />
         <ResourceDictionary Source="./ButtonDictionary.xaml" />
+        <ResourceDictionary Source="./DataGridDictionary.xaml" />
+        <ResourceDictionary Source="./ScrollViewDictionary.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

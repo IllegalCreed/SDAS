@@ -62,10 +62,10 @@
                                                 Binding="{Binding State}"
                                                 Width="1*" />
                             <DataGridTextColumn Header="首访日期"
-                                                Binding="{Binding FirstDate}"
+                                                Binding="{Binding FirstDate, StringFormat=yyyy-MM-dd}"
                                                 Width="2*" />
                             <DataGridTextColumn Header="最后更新日期"
-                                                Binding="{Binding LastDate}"
+                                                Binding="{Binding LastDate, StringFormat=yyyy-MM-dd}"
                                                 Width="2*" />
                             <DataGridTextColumn Header="操作"
                                                 Width="3*" />

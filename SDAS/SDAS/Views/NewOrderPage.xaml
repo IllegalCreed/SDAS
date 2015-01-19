@@ -33,7 +33,174 @@
 
             <Border Width="600"
                     Height="800"
-                    Background="#FFBBBBBB" />
+                    Background="#FFBBBBBB">
+                <Grid Margin="50,50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="客户姓名"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}"/>
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             FontSize="24"
+                             Padding="10,1"
+                             Margin="0,10"
+                             Style="{StaticResource Login_TextBox_Style}"/>
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="身份证号"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             FontSize="24"
+                             Padding="10,1"
+                             Margin="0,10"
+                             Style="{StaticResource Login_TextBox_Style}" />
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="电话号码"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             FontSize="24"
+                             Padding="10,1"
+                             Margin="0,10"
+                             Style="{StaticResource Login_TextBox_Style}" />
+
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Text="性别"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <ComboBox Grid.Row="3"
+                              Grid.Column="1"
+                              Margin="0,10"
+                              FontSize="24">
+                        <ComboBoxItem Content="男" />
+                        <ComboBoxItem Content="女" />
+                    </ComboBox>
+
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="0"
+                               Text="年龄"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <TextBox Grid.Row="4"
+                             Grid.Column="1"
+                             FontSize="24"
+                             Padding="10,1"
+                             Margin="0,10"
+                             Style="{StaticResource Login_TextBox_Style}" />
+
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               Text="工作地区"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <TextBox Grid.Row="5"
+                             Grid.Column="1"
+                             FontSize="24"
+                             Padding="10,1"
+                             Margin="0,10"
+                             Style="{StaticResource Login_TextBox_Style}" />
+
+                    <TextBlock Grid.Row="6"
+                               Grid.Column="0"
+                               Text="居住地区"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <TextBox Grid.Row="6"
+                             Grid.Column="1"
+                             FontSize="24"
+                             Padding="10,1"
+                             Margin="0,10"
+                             Style="{StaticResource Login_TextBox_Style}" />
+
+                    <TextBlock Grid.Row="7"
+                               Grid.Column="0"
+                               Text="文化水平"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <ComboBox Grid.Row="7"
+                              Grid.Column="1"
+                              Margin="0,10"
+                              FontSize="24">
+                        <ComboBoxItem Content="大本" />
+                        <ComboBoxItem Content="大专" />
+                    </ComboBox>
+
+                    <TextBlock Grid.Row="8"
+                               Grid.Column="0"
+                               Text="家庭成员"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <TextBox Grid.Row="8"
+                             Grid.Column="1"
+                             FontSize="24"
+                             Padding="10,1"
+                             Margin="0,10"
+                             Style="{StaticResource Login_TextBox_Style}" />
+
+                    <TextBlock Grid.Row="9"
+                               Grid.Column="0"
+                               Text="首访途径"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <ComboBox Grid.Row="9"
+                              Grid.Column="1"
+                              Margin="0,10"
+                              FontSize="24">
+                        <ComboBoxItem Content="来电" />
+                        <ComboBoxItem Content="来访" />
+                    </ComboBox>
+
+                    <TextBlock Grid.Row="10"
+                               Grid.Column="0"
+                               Text="渠道"
+                               FontSize="24"
+                               Margin="0,10"
+                               Style="{StaticResource Common_TextBlock_Style}" />
+                    <ComboBox Grid.Row="10"
+                              Grid.Column="1"
+                              Margin="0,10"
+                              FontSize="24">
+                        <ComboBoxItem Content="网络" />
+                        <ComboBoxItem Content="电视" />
+                    </ComboBox>
+                </Grid>
+            </Border>
 
             <Button Style="{StaticResource Common_Button_Style}"
                     Width="100"
@@ -41,7 +208,7 @@
                     Content="下一步"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Command="{Binding CreatedOrderCommand}"/>
+                    Command="{Binding CreatedOrderCommand}" />
         </Grid>
     </Grid>
 </Page>

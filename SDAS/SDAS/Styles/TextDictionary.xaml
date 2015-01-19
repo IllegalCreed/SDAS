@@ -42,7 +42,8 @@
                         <ScrollViewer x:Name="PART_ContentHost"
                                       Focusable="false"
                                       HorizontalScrollBarVisibility="Hidden"
-                                      VerticalScrollBarVisibility="Hidden" />
+                                      VerticalScrollBarVisibility="Hidden"
+                                      />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled"
@@ -79,5 +80,13 @@
                         Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
             </MultiTrigger>
         </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Common_TextBlock_Style"
+           TargetType="TextBlock">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="Foreground"
+                Value="#FF333333" />
     </Style>
 </ResourceDictionary>

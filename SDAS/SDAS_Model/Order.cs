@@ -62,5 +62,39 @@ namespace SDAS_Model
         public PropertyRights PropertyRights;
         public User Saler;
         public List<VisitLog> VisitLogs;
+
+        private DateTime mFirstDate;
+        public DateTime FirstDate
+        {
+            get
+            {
+                return mFirstDate;
+            }
+            set
+            {
+                if (mFirstDate != value)
+                {
+                    mFirstDate = value;
+                    RaisePropertyChanged(() => FirstDate);
+                }
+            }
+        }
+
+        private DateTime mLastDate;
+        public DateTime LastDate
+        {
+            get
+            {
+                return mLastDate;
+            }
+            set
+            {
+                if (mLastDate != value)
+                {
+                    mLastDate = value;
+                    RaisePropertyChanged(() => LastDate);
+                }
+            }
+        }
     }
 }

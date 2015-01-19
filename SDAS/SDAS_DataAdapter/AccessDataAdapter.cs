@@ -66,10 +66,10 @@ namespace SDAS_DataAdapter
                 Order.ID = (int)row["ID"];
 
                 Order.Saler.ID = (int)row["销售"];
-                Order.Saler = GetUserByID(Order.Saler.ID);
+                //Order.Saler = GetUserByID(Order.Saler.ID);
 
                 Order.Customer.ID = (int)row["客户"];
-                Order.Customer = GetCustomerByID(Order.Customer.ID);
+                //Order.Customer = GetCustomerByID(Order.Customer.ID);
 
                 Order.State = row["状态"].ToString();
                 int.TryParse(row["认购ID"].ToString(),out Order.Offer.ID);
@@ -157,6 +157,27 @@ namespace SDAS_DataAdapter
             }
 
             return name;
+        }
+
+        public List<VisitLog> GetVisitLogsByOrderID(int ID)
+        {
+            List<VisitLog> VisitLogs = new List<VisitLog>();
+
+            string querystring = "SELECT * FROM 来电来访日志 WHERE 所属订单=" + ID + " ORDER BY 日期 DESC";
+            DataTable Data = DoSearch(querystring);
+
+            foreach (DataRow row in Data.Rows)
+            {
+                VisitLog VisitLog = new VisitLog();
+                VisitLog.ID = (int)row["ID"];
+                VisitLog.State = row["状态"].ToString();
+                VisitLog.VisitWay = row["途径"].ToString();
+                DateTime.TryParse(row["日期"].ToString(), out VisitLog.Date);
+                VisitLog.Content = row["内容"].ToString();
+                VisitLogs.Add(VisitLog);
+            }
+
+            return VisitLogs;
         }
     }
 }

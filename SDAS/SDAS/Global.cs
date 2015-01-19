@@ -15,7 +15,7 @@ namespace SDAS
         private Global()
         {
             string DBPath = ConfigurationManager.AppSettings["DBPath"];
-            ADA = new AccessDataAdapter("..\\..\\..\\DB\\SDAS.accdb");
+            ADA = new AccessDataAdapter(DBPath);
         }
         public static Global GetInstance()
         {
@@ -31,5 +31,27 @@ namespace SDAS
         /// 当前销售
         /// </summary>
         public User CurrentUser;
+
+        /// <summary>
+        /// 用户信息缓存
+        /// </summary>
+        public Dictionary<int, Customer> CustomerCache = new Dictionary<int, Customer>();
+
+        public Customer GetCustomerByID(int CustomerID)
+        {
+            if(CustomerCache.ContainsKey(CustomerID))
+            {
+                return CustomerCache[CustomerID];
+            }
+            else
+            {
+                Customer customer = new Customer();
+
+                customer = ADA.GetCustomerByID(CustomerID);
+                CustomerCache.Add(CustomerID,customer);
+
+                return customer;
+            }
+        }
     }
 }

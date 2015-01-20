@@ -126,10 +126,12 @@ namespace SDAS_DataAdapter
                 customer.PhoneNumber = Data.Rows[0]["手机号"].ToString();
 
                 string Residence = GetAdministrativeNameByCode(Data.Rows[0]["居住地区"].ToString());
-                customer.Residence = string.IsNullOrEmpty(Residence) ? "未找到" : Residence;
+                customer.Residence.Code = Residence;
+                customer.Residence.Name = string.IsNullOrEmpty(Residence) ? "未找到" : Residence;
 
                 string WorkPlace = GetAdministrativeNameByCode(Data.Rows[0]["工作地区"].ToString());
-                customer.WorkPlace = string.IsNullOrEmpty(WorkPlace) ? "未找到" : WorkPlace;
+                customer.WorkPlace.Code = WorkPlace;
+                customer.WorkPlace.Name = string.IsNullOrEmpty(WorkPlace) ? "未找到" : WorkPlace;
 
                 int.TryParse(Data.Rows[0]["家庭人数"].ToString(), out customer.FamilyNumber);
                 customer.Channel = Data.Rows[0]["首访渠道"].ToString();
@@ -178,6 +180,90 @@ namespace SDAS_DataAdapter
             }
 
             return VisitLogs;
+        }
+
+        public List<string> GetEducationalBackgrounds()
+        {
+            List<string> EducationalBackgrounds = new List<string>();
+
+            string querystring = "SELECT * FROM 文化水平";
+            DataTable Data = DoSearch(querystring);
+
+            foreach (DataRow row in Data.Rows)
+            {
+                string kind = row[0].ToString();
+                EducationalBackgrounds.Add(kind);
+            }
+
+            return EducationalBackgrounds;
+        }
+
+        public List<string> GetVisitWays()
+        {
+            List<string> VisitWays = new List<string>();
+
+            string querystring = "SELECT * FROM 途径类型";
+            DataTable Data = DoSearch(querystring);
+
+            foreach (DataRow row in Data.Rows)
+            {
+                string kind = row[0].ToString();
+                VisitWays.Add(kind);
+            }
+
+            return VisitWays;
+        }
+
+        public List<string> GetChannels()
+        {
+            List<string> Channels = new List<string>();
+
+            string querystring = "SELECT * FROM 渠道类型";
+            DataTable Data = DoSearch(querystring);
+
+            foreach (DataRow row in Data.Rows)
+            {
+                string kind = row[0].ToString();
+                Channels.Add(kind);
+            }
+
+            return Channels;
+        }
+
+        public List<Administrative> GetProvinces()
+        {
+            List<Administrative> Provinces = new List<Administrative>();
+
+            string querystring = "SELECT * FROM 行政区划 WHERE 行政级别='省'";
+            DataTable Data = DoSearch(querystring);
+
+            foreach (DataRow row in Data.Rows)
+            {
+                Administrative administrative = new Administrative();
+                administrative.Code = row["代码"].ToString();
+                administrative.Name = row["名称"].ToString();
+                Provinces.Add(administrative);
+            }
+
+            return Provinces;
+        }
+
+        public List<Administrative> GetSubordinateAdministrativeByCode(string code)
+        {
+            List<Administrative> Administratives = new List<Administrative>();
+
+            string querystring = "SELECT * FROM 行政区划 WHERE 代码 = ANY ( SELECT 下级代码 FROM 行政从属 WHERE 上级代码 = '" + code + "' )";
+            DataTable Data = DoSearch(querystring);
+
+            foreach (DataRow row in Data.Rows)
+            {
+                Administrative administrative = new Administrative();
+                administrative.Code = row["代码"].ToString();
+                administrative.Name = row["名称"].ToString();
+                Administratives.Add(administrative);
+            }
+
+            return Administratives;
         }
     }
 }

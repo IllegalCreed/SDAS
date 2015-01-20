@@ -8,6 +8,12 @@ namespace SDAS_Model
 {
     public class Customer : ViewModelBase
     {
+        public Customer()
+        {
+            Residence = new Administrative();
+            WorkPlace = new Administrative();
+        }
+
         public int ID;
 
         private string mName;
@@ -95,8 +101,8 @@ namespace SDAS_Model
             }
         }
 
-        public string Residence;
-        public string WorkPlace;
+        public Administrative Residence;
+        public Administrative WorkPlace;
         public int FamilyNumber;
         public string Channel;
         public string EducationalBackground;

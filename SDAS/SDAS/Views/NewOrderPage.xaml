@@ -3,12 +3,17 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:sdas="clr-namespace:SDAS"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="300"
       Title="NewOrderPage"
       Background="#FFDDDDDD"
       x:Name="Root">
+    
+    <Page.Resources>
+        <sdas:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+    </Page.Resources>
 
     <Grid DataContext="{Binding SVM.NOVM}">
         <Grid.RowDefinitions>
@@ -101,7 +106,10 @@
                     <ComboBox Grid.Row="3"
                               Grid.Column="1"
                               Margin="0,10"
-                              FontSize="24">
+                              FontSize="24"
+                              SelectedIndex="0"
+                              Style="{StaticResource Common_ComboBox_Style}"
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
                         <ComboBoxItem Content="男" />
                         <ComboBoxItem Content="女" />
                     </ComboBox>
@@ -125,12 +133,31 @@
                                FontSize="24"
                                Margin="0,10"
                                Style="{StaticResource Common_TextBlock_Style}" />
-                    <TextBox Grid.Row="5"
-                             Grid.Column="1"
-                             FontSize="24"
-                             Padding="10,1"
-                             Margin="0,10"
-                             Style="{StaticResource Login_TextBox_Style}" />
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="5"
+                                Grid.Column="1"
+                                Margin="0,10">
+                        <ComboBox x:Name="WorkPlaceProvince"
+                                  FontSize="24"
+                                  MinWidth="100"
+                                  ItemsSource="{Binding Provinces}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Code"
+                                  SelectedValue="{Binding WorkPlaceProvinceCode, Mode=OneWayToSource}"
+                                  Style="{StaticResource Common_ComboBox_Style}"
+                                  ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
+                        </ComboBox>
+                        <ComboBox Visibility="{Binding ElementName=WorkPlaceProvince, Path=SelectedItem,Converter={StaticResource NullToVisibilityConverter}}"
+                                  FontSize="24"
+                                  MinWidth="100"
+                                  ItemsSource="{Binding WorkPlacePrefectures}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Code"
+                                  SelectedValue="{Binding WorkPlacePrefectureCode, Mode=OneWayToSource}"
+                                  Style="{StaticResource Common_ComboBox_Style}"
+                                  ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
+                        </ComboBox>
+                    </StackPanel>
 
                     <TextBlock Grid.Row="6"
                                Grid.Column="0"
@@ -138,12 +165,31 @@
                                FontSize="24"
                                Margin="0,10"
                                Style="{StaticResource Common_TextBlock_Style}" />
-                    <TextBox Grid.Row="6"
-                             Grid.Column="1"
-                             FontSize="24"
-                             Padding="10,1"
-                             Margin="0,10"
-                             Style="{StaticResource Login_TextBox_Style}" />
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="6"
+                                Grid.Column="1"
+                                Margin="0,10">
+                        <ComboBox x:Name="ResidenceProvince"
+                                  FontSize="24"
+                                  MinWidth="100"
+                                  ItemsSource="{Binding Provinces}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Code"
+                                  SelectedValue="{Binding ResidenceProvinceCode, Mode=OneWayToSource}"
+                                  Style="{StaticResource Common_ComboBox_Style}"
+                                  ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
+                        </ComboBox>
+                        <ComboBox Visibility="{Binding ElementName=ResidenceProvince, Path=SelectedItem,Converter={StaticResource NullToVisibilityConverter}}"
+                                  FontSize="24"
+                                  MinWidth="100"
+                                  ItemsSource="{Binding ResidencePrefectures}"
+                                  DisplayMemberPath="Name"
+                                  SelectedValuePath="Code"
+                                  SelectedValue="{Binding ResidencePrefectureCode, Mode=OneWayToSource}"
+                                  Style="{StaticResource Common_ComboBox_Style}"
+                                  ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
+                        </ComboBox>
+                    </StackPanel>
 
                     <TextBlock Grid.Row="7"
                                Grid.Column="0"
@@ -154,9 +200,11 @@
                     <ComboBox Grid.Row="7"
                               Grid.Column="1"
                               Margin="0,10"
-                              FontSize="24">
-                        <ComboBoxItem Content="大本" />
-                        <ComboBoxItem Content="大专" />
+                              FontSize="24"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding EducationalBackgrounds}"
+                              Style="{StaticResource Common_ComboBox_Style}"
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
                     </ComboBox>
 
                     <TextBlock Grid.Row="8"
@@ -181,9 +229,11 @@
                     <ComboBox Grid.Row="9"
                               Grid.Column="1"
                               Margin="0,10"
-                              FontSize="24">
-                        <ComboBoxItem Content="来电" />
-                        <ComboBoxItem Content="来访" />
+                              FontSize="24"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding VisitWays}"
+                              Style="{StaticResource Common_ComboBox_Style}"
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
                     </ComboBox>
 
                     <TextBlock Grid.Row="10"
@@ -195,9 +245,11 @@
                     <ComboBox Grid.Row="10"
                               Grid.Column="1"
                               Margin="0,10"
-                              FontSize="24">
-                        <ComboBoxItem Content="网络" />
-                        <ComboBoxItem Content="电视" />
+                              FontSize="24"
+                              SelectedIndex="0"
+                              ItemsSource="{Binding Channels}"
+                              Style="{StaticResource Common_ComboBox_Style}"
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
                     </ComboBox>
                 </Grid>
             </Border>

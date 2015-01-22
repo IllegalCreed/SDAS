@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,12 @@ namespace SDAS_DataAdapter
     public class AccessDataAdapter
     {
         private OleDbConnection ODConnection;
-        private OleDbDataAdapter OCAdapter;
+        private OleDbDataAdapter ODAdapter;
 
         public AccessDataAdapter(string path)
         {
-            OCAdapter = new OleDbDataAdapter();
+            ODAdapter = new OleDbDataAdapter();
+            //ODAdapter.RowUpdated += new OleDbRowUpdatedEventHandler(HandleRowUpdated);
 
             string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path;
             ODConnection = new OleDbConnection(connectionString);
@@ -26,14 +28,41 @@ namespace SDAS_DataAdapter
         {
             DataTable Data = new DataTable();
             OleDbCommand command = new OleDbCommand(querystring, ODConnection);
-            OCAdapter.SelectCommand = command;
+            ODAdapter.SelectCommand = command;
 
             ODConnection.Open();
-            OCAdapter.Fill(Data);
+            ODAdapter.Fill(Data);
             ODConnection.Close();
 
             return Data;
         }
+
+        private int DoInsert(string querystring)
+        {
+            OleDbCommand command = new OleDbCommand(querystring, ODConnection);
+
+            ODConnection.Open();
+            command.ExecuteNonQuery();
+            command.CommandText = "SELECT @@IDENTITY";
+            int i = Int32.Parse(command.ExecuteScalar().ToString());
+            ODConnection.Close();
+
+            return i;
+        }
+
+        //private void HandleRowUpdated(object sender, OleDbRowUpdatedEventArgs e)
+        //{
+        //    if (e.Status == UpdateStatus.Continue && e.StatementType == StatementType.Insert)
+        //    {
+        //        OleDbCommand cmdGetIdentity = new OleDbCommand();
+        //        cmdGetIdentity.CommandText = "SELECT @@IDENTITY";
+        //        cmdGetIdentity.Connection = ODConnection;
+
+        //        // Get the Identity column value
+        //        int i = Int32.Parse(cmdGetIdentity.ExecuteScalar().ToString());
+        //        e.Row.AcceptChanges();
+        //    }
+        //}
 
         public User Login(string UserName, string Password)
         {
@@ -78,6 +107,15 @@ namespace SDAS_DataAdapter
                 int.TryParse(row["产权ID"].ToString(), out Order.PropertyRights.ID);
                 DateTime.TryParse(row["放款日期"].ToString(),out Order.LoanDate);
                 DateTime.TryParse(row["入住日期"].ToString(), out Order.CheckInDate);
+
+                DateTime firstDate = new DateTime();
+                DateTime.TryParse(row["创建日期"].ToString(), out firstDate);
+                Order.FirstDate = firstDate;
+
+                DateTime lastDate = new DateTime();
+                DateTime.TryParse(row["更新日期"].ToString(), out lastDate);
+                Order.LastDate = lastDate;
+
                 Orders.Add(Order);
             }
 
@@ -264,6 +302,18 @@ namespace SDAS_DataAdapter
             }
 
             return Administratives;
+        }
+
+        public int AddOrder(int CustomerID,int SalerID)
+        {
+            string querystring = "INSERT INTO 订单信息 (客户,状态,销售,创建日期,更新日期) " + "VALUES (" + CustomerID + ",'首访'," + SalerID + ",'" + DateTime.Now + "','" + DateTime.Now + "')";
+            return DoInsert(querystring);
+        }
+
+        public int AddCustomer(Customer customer)
+        {
+            string querystring = "INSERT INTO 客户信息 (姓名,性别,年龄,身份证号,手机号,居住地区,工作地区,家庭人数,首访渠道,文化水平,首访途径) " + "VALUES ('" + customer.Name + "','" + customer.Sex + "'," + customer.Age + ",'" + customer.IDNumber + "','" + customer.PhoneNumber + "','" + customer.Residence.Code + "','" + customer.WorkPlace.Code + "'," + customer.FamilyNumber + ",'" + customer.Channel + "','" + customer.EducationalBackground + "','" + customer.VisitWay+ "')";
+            return DoInsert(querystring);
         }
     }
 }

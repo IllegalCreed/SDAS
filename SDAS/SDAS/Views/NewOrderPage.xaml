@@ -69,7 +69,8 @@
                              FontSize="24"
                              Padding="10,1"
                              Margin="0,10"
-                             Style="{StaticResource Login_TextBox_Style}"/>
+                             Style="{StaticResource Login_TextBox_Style}"
+                             Text="{Binding Name, Mode=OneWayToSource}"/>
 
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
@@ -82,7 +83,8 @@
                              FontSize="24"
                              Padding="10,1"
                              Margin="0,10"
-                             Style="{StaticResource Login_TextBox_Style}" />
+                             Style="{StaticResource Login_TextBox_Style}"
+                             Text="{Binding IDNumber, Mode=OneWayToSource}" />
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
@@ -95,7 +97,8 @@
                              FontSize="24"
                              Padding="10,1"
                              Margin="0,10"
-                             Style="{StaticResource Login_TextBox_Style}" />
+                             Style="{StaticResource Login_TextBox_Style}"
+                             Text="{Binding PhoneNumber, Mode=OneWayToSource}" />
 
                     <TextBlock Grid.Row="3"
                                Grid.Column="0"
@@ -109,9 +112,11 @@
                               FontSize="24"
                               SelectedIndex="0"
                               Style="{StaticResource Common_ComboBox_Style}"
-                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
-                        <ComboBoxItem Content="男" />
-                        <ComboBoxItem Content="女" />
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}"
+                              SelectedValuePath="Content"
+                              SelectedValue="{Binding Sex, Mode=OneWayToSource}">
+                        <ComboBoxItem>男</ComboBoxItem>
+                        <ComboBoxItem>女</ComboBoxItem>
                     </ComboBox>
 
                     <TextBlock Grid.Row="4"
@@ -125,7 +130,8 @@
                              FontSize="24"
                              Padding="10,1"
                              Margin="0,10"
-                             Style="{StaticResource Login_TextBox_Style}" />
+                             Style="{StaticResource Login_TextBox_Style}"
+                             Text="{Binding Age, Mode=TwoWay}" />
 
                     <TextBlock Grid.Row="5"
                                Grid.Column="0"
@@ -204,7 +210,8 @@
                               SelectedIndex="0"
                               ItemsSource="{Binding EducationalBackgrounds}"
                               Style="{StaticResource Common_ComboBox_Style}"
-                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}"
+                              SelectedValue="{Binding EducationalBackground, Mode=OneWayToSource}">
                     </ComboBox>
 
                     <TextBlock Grid.Row="8"
@@ -218,7 +225,8 @@
                              FontSize="24"
                              Padding="10,1"
                              Margin="0,10"
-                             Style="{StaticResource Login_TextBox_Style}" />
+                             Style="{StaticResource Login_TextBox_Style}"
+                             Text="{Binding FamilyNumber, Mode=TwoWay}" />
 
                     <TextBlock Grid.Row="9"
                                Grid.Column="0"
@@ -233,7 +241,8 @@
                               SelectedIndex="0"
                               ItemsSource="{Binding VisitWays}"
                               Style="{StaticResource Common_ComboBox_Style}"
-                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}"
+                              SelectedValue="{Binding VisitWay, Mode=OneWayToSource}">
                     </ComboBox>
 
                     <TextBlock Grid.Row="10"
@@ -249,7 +258,8 @@
                               SelectedIndex="0"
                               ItemsSource="{Binding Channels}"
                               Style="{StaticResource Common_ComboBox_Style}"
-                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}">
+                              ItemContainerStyle="{StaticResource Common_ComboBoxItem_Style}"
+                              SelectedValue="{Binding Channel, Mode=OneWayToSource}">
                     </ComboBox>
                 </Grid>
             </Border>

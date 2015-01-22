@@ -33,6 +33,38 @@ namespace SDAS.ViewModels
 
         public void OnCreatedOrder()
         {
+            Customer customer = new Customer();
+            customer.Name = this.Name;
+            customer.Sex = this.Sex;
+            customer.Age = this.Age;
+            customer.IDNumber = this.IDNumber;
+            customer.PhoneNumber = this.PhoneNumber;
+
+            if(!string.IsNullOrEmpty(this.ResidencePrefectureCode))
+            {
+                customer.Residence.Code = this.ResidencePrefectureCode;
+            }
+            else
+            {
+                customer.Residence.Code = this.ResidenceProvinceCode;
+            }
+
+            if (!string.IsNullOrEmpty(this.WorkPlacePrefectureCode))
+            {
+                customer.WorkPlace.Code = this.WorkPlacePrefectureCode;
+            }
+            else
+            {
+                customer.WorkPlace.Code = this.WorkPlaceProvinceCode;
+            }
+
+            customer.FamilyNumber = this.FamilyNumber;
+            customer.Channel = this.Channel;
+            customer.EducationalBackground = this.EducationalBackground;
+            customer.VisitWay = this.VisitWay;
+
+            customer.ID = Global.GetInstance().ADA.AddCustomer(customer);
+            int orderID = Global.GetInstance().ADA.AddOrder(customer.ID, Global.GetInstance().CurrentUser.ID);
             ParentVM.ParentVM.Pagesource = "OrderPage.xaml";
         }
 

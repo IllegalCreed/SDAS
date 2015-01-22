@@ -52,12 +52,6 @@ namespace SDAS.ViewModels
                 foreach (Order item in ParentVM.SVM.Orders)
                 {
                     item.Customer = Global.GetInstance().GetCustomerByID(item.Customer.ID);
-                    item.VisitLogs = Global.GetInstance().ADA.GetVisitLogsByOrderID(item.ID);
-                    if (item.VisitLogs.Count>0)
-                    {
-                        item.FirstDate = item.VisitLogs.LastOrDefault().Date;
-                        item.LastDate = item.VisitLogs.FirstOrDefault().Date;
-                    }
                 }
             }
         }

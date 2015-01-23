@@ -66,7 +66,8 @@ namespace SDAS.ViewModels
 
         public void OnCreateOrder()
         {
-            ParentVM.Pagesource = "NewOrderPage.xaml";
+            //ParentVM.Pagesource = "NewOrderPage.xaml";
+            ParentVM.Pagesource = "OrderPage.xaml";
         }
     }
 }

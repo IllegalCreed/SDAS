@@ -74,6 +74,7 @@
     <Compile Include="Views\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProgressControl.cs" />
     <Compile Include="Views\SellerHomePage.xaml.cs">
       <DependentUpon>SellerHomePage.xaml</DependentUpon>
     </Compile>

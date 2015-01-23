@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:control="clr-namespace:SDAS.Views"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="300"
@@ -18,7 +19,8 @@
 
         <Border Grid.Row="0"
                 x:Name="HeaderControl"
-                Background="#FF999999" />
+                Background="#FF999999">
+        </Border>
 
         <Grid Grid.Row="1"
               Margin="20">
@@ -44,7 +46,14 @@
                         Command="{Binding ElementName=Root, Path=GoHomeCommand}" />
 
                 <Border Grid.Column="1"
-                        Background="#FFBBBBBB" />
+                        Background="#FFBBBBBB">
+                    <control:ProgressControl Nodes="{Binding States}"
+                                             NodeSize="50,50"
+                                             Background="#FF283642"
+                                             Foreground="#FF68C8CA"
+                                             VerticalAlignment="Center"
+                                             CurrentProgress="{Binding CurrentState}" />
+                </Border>
             </Grid>
 
             <Grid Grid.Row="1" Margin="0,20,0,0">

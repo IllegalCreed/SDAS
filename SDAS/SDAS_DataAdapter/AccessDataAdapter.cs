@@ -268,6 +268,22 @@ namespace SDAS_DataAdapter
             return Channels;
         }
 
+        public List<string> GetStates()
+        {
+            List<string> States = new List<string>();
+
+            string querystring = "SELECT * FROM 订单状态";
+            DataTable Data = DoSearch(querystring);
+
+            foreach (DataRow row in Data.Rows)
+            {
+                string kind = row[0].ToString();
+                States.Add(kind);
+            }
+
+            return States;
+        }
+
         public List<Administrative> GetProvinces()
         {
             List<Administrative> Provinces = new List<Administrative>();
